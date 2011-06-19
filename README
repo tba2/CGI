@@ -1,0 +1,18 @@
+Quick installation instructions:
+
+1. Setup Apache2, redirect all requests to /bootstrap.p6, e.g.
+        RewriteEngine on
+        RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-f
+        RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-d
+        RewriteRule ^(.*)$ /bootstrap.p6/$1 [QSA]
+
+        <Directory />
+                Options FollowSymLinks ExecCGI
+                AllowOverride None
+                DirectoryIndex bootstrap.p6
+                AddHandler cgi-script .p6
+        </Directory>
+
+2. Open bootstrap.p6 and configure the namespaces/default classes for routing
+
+3. Edit the contents of My/ to implement your application
